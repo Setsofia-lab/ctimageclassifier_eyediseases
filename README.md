@@ -1,148 +1,106 @@
-# Eye Disease Classification using Deep Learning
+# Eye Disease Classification using CNN models
 
-## 🔬 Project Overview
+I've developed this project to use three different CNN models to help identify different eye diseases from medical images. Think of it as a smart assistant that can look at pictures of eyes and help detect various conditions like cataracts or glaucoma.
 
-This project develops a machine learning solution for automated classification of eye diseases using deep learning techniques. By leveraging transfer learning and state-of-the-art convolutional neural network architectures, we aim to create a robust diagnostic support tool for detecting key eye conditions.
+## What Does This Project Do?
 
-### 🎯 Project Goals
-- Develop an accurate multi-class image classification model for eye diseases
-- Compare performance across different pre-trained neural network architectures
-- Create a reproducible and scalable machine learning workflow
+My AI system can look at eye images and identify four different conditions:
+- Cataracts (clouding of the eye lens)
+- Glaucoma (damage to the optic nerve)
+- Diabetic Retinopathy (diabetes-related eye condition)
+- Healthy Eyes (normal condition)
 
-### 🩺 Supported Disease Categories
-- Cataract
-- Glaucoma
-- Diabetic Retinopathy
-- Normal (Healthy) Eye Condition
+## How Accurate Is It?
 
-## 📊 Technical Approach
+I tested three different AI models, and here's how well they performed:
 
-### Methodology
-- **Transfer Learning**: Utilize pre-trained neural network architectures
-- **Multi-class Classification**: Classify images into four distinct categories
-- **Model Architectures**:
-  - VGG16
-  - ResNet50
-  - MobileNetV2
+**Before Fine-tuning:**
+- ResNet50: 89.7% accuracy
+- VGG16: 85.9% accuracy
+- MobileNetV2: 84.4% accuracy
 
-### Performance Metrics
-- Accuracy
-- F1-Score
-- Precision
-- Recall
+**After Fine-tuning:**
+- VGG16: 88.9% accuracy
+- ResNet50: 85.9% accuracy
+- MobileNetV2: 80.9% accuracy
 
-## 🚀 Getting Started
+## Getting Started
 
-### Prerequisites
-- Python 3.8+
-- TensorFlow 2.x
-- scikit-learn
-- NumPy
-- Matplotlib (for visualization)
+### What You'll Need
+- Python 3.8 or newer
+- Some key Python libraries (I'll help you install these)
 
-### Installation
+### Setting Up the Project
 
-1. Clone the repository
-```bash
-git clone https://github.com/Setsofia-lab/ctimageclassifier_eyediseases.git
-cd EyeDisease_Classifier_DeepLearning
-```
+1. **Get the Code**
+   ```bash
+   git clone https://github.com/Setsofia-lab/ctimageclassifier_eyediseases.git
+   cd EyeDisease_Classifier_DeepLearning
+   ```
 
-2. Create a virtual environment
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-```
+2. **Set Up Your Environment**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   ```
 
-3. Install required packages
-```bash
-pip install -r requirements.txt
-```
+3. **Install Required Software**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## 📁 Project Structure
+## How to Use It
 
-```
-eye-disease-classification/
-│
-├── dataset/                   # Raw image dataset
-│   ├── cataract/
-│   ├── glaucoma/
-│   ├── diabetic_retinopathy/
-│   └── normal/
-│
-├── output_directory/          # Processed dataset splits
-│   ├── train/
-│   ├── val/
-│   └── test/
-│
-├── scripts/
-│   ├── split_dataset.py       # Dataset splitting utility
-│   ├── train_vgg16.py         # VGG16 training script
-│   ├── train_resnet50.py      # ResNet50 training script
-│   └── train_mobilenetv2.py   # MobileNetV2 training script
-│
-├── models/                    # Saved model weights
-├── notebooks/                 # Jupyter notebooks for exploration
-├── requirements.txt           # Python dependencies
-└── README.md                  # Project documentation
-```
+1. **Organize Your Images**
+   Put your eye images in folders like this:
+   ```
+   dataset/
+   ├── cataract/
+   ├── glaucoma/
+   ├── diabetic_retinopathy/
+   └── normal/
+   ```
 
-## 🔧 Usage
+2. **Prepare the Data**
+   ```bash
+   python load_dataset.py
+   ```
 
-### 1. Prepare Dataset
-Organize your image dataset into the required folder structure:
-```
-dataset/
-├── cataract/
-├── glaucoma/
-├── diabetic_retinopathy/
-└── normal/
-```
+3. **Run the AI**
+   ```bash
+   python model.py
+   ```
 
-### 2. Split Dataset
-```bash
-python load_dataset.py
-```
+## Project Organization
 
-### 3. Train Models
-```bash
-python model.py
-```
+I've organized the project into these main folders:
+- `dataset/`: Where you put your eye images
+- `output_directory/`: Where the processed images go
+- `scripts/`: The AI training programs
+- `models/`: Where trained AI models are saved
+- `notebooks/`: Interactive examples and demonstrations
 
-## 📈 Model Performance
+## How It Works
 
-### Comparative Results
+My system uses transfer learning, which means I'm building on top of AI models that have already learned to recognize images. I've adapted these models specifically for eye disease detection by:
+- Using pre-trained models that already know how to analyze images
+- Teaching them to focus on specific eye disease characteristics
+- Adding special layers to make them better at classifying eye conditions
 
-(base) samuelsetsofia@Samuels-MBP-2 eyeDiseaseImage_classifier % python model.py
-Found 2949 files belonging to 4 classes.
-Found 633 files belonging to 4 classes.
-Found 635 files belonging to 4 classes.
+## Want to Contribute?
 
-Model Performance Before Tuning
-{'Model': 'VGG16', 'Val Accuracy': 0.859399676322937}
-{'Model': 'ResNet50', 'Val Accuracy': 0.8973143696784973}
-{'Model': 'MobileNetV2', 'Val Accuracy': 0.8436018824577332}
-
-Model Performance After Tuning
-{'Model': 'VGG16', 'Val Accuracy': 0.8894155025482178}
-{'Model': 'ResNet50', 'Val Accuracy': 0.859399676322937}
-{'Model': 'MobileNetV2', 'Val Accuracy': 0.8088467717170715}
-
-| **Model**       | ** Accuracy (Before Tuning)** | ** Accuracy (After Tuning)** |
-|------------------|----------------------------------|---------------------------------|
-| **VGG16**       | 0.8594                          | 0.8894                         |
-| **ResNet50**    | 0.8973                          | 0.8594                         |
-| **MobileNetV2** | 0.8436                          | 0.8088                         |
-
-## 🧠 Transfer Learning Strategy
-- Used pre-trained ImageNet weights
-- Froze base model layers
-- Added custom classification head
-- Applied dropout for regularization
-
-## 🤝 Contributing
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+I welcome contributions! Here's how you can help:
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/YourFeature`)
+3. Make your changes
+4. Submit them for review (`git push origin feature/YourFeature`)
 5. Open a Pull Request
+
+## Project Goals
+
+I'm working to:
+- Make eye disease detection more accessible
+- Compare different AI approaches to find the best one
+- Create a tool that's easy for others to use and build upon
+
+Need help or have questions? Feel free to open an issue on my GitHub repository!
